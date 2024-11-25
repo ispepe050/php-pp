@@ -6,6 +6,11 @@ $items = [
 ];
 include_once 'header.php';
 ?>
+<?php if (isset($_GET) && $_GET['ok'] == 1): ?>
+  <article>
+    Nuevo usuario guardado con éxito
+  </article>
+<?php edif; ?>
 
 <article>
   <h2>Lista de usuarios</h2>
