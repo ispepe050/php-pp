@@ -1,5 +1,15 @@
 <?php
+require_once "db.php";
+
+$sql = "SELECT * FROM usuarios";
+$query = $pdo->prepare($sql);
+$query->execute();
+
+$items = $query->fetchAll(PDO::FETCH_ASSOC);
+
 $titulo = "Gestor de Usuarios";
+
+/*
 $items  = [
   [
     'nombre' => 'José Angel',
@@ -7,6 +17,7 @@ $items  = [
     'correo' => 'ispepe050@icloud.com'
   ]
 ];
+*/
 include_once 'header.php';
 ?>
 
@@ -35,7 +46,7 @@ include_once 'header.php';
         <tr>
           <td><?= $item['nombre'] ?></td>
           <td><?= $item['edad'] ?></td>
-          <td><?= $item['correo'] ?></td>
+          <td><?= $item['email'] ?></td>
           <td>Opciones aquí</td>
         </tr>
       <?php endforeach; ?>

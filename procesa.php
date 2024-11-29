@@ -1,4 +1,6 @@
 <?php
+require_once "db.php";
+
 if (!empty($_GET)) {
   print_r($_GET);
 }
@@ -27,6 +29,17 @@ if (!empty($_POST)) {
   }
 
   // Guardar el usuario...
+
+  $sql = "INSERT INTO usuarios(nombre, edad, email) VALUES (:nombre, :edad, :correo)";
+  $query = $pdo->prepare($sql);
+  $query->execute([
+    ':nombre' => $nombre,
+    'edad' => $edad,
+    'correo' => $correo
+  ]);
+
+  $id = $pdo->lastInsertId();
+
 
   header("Location: usuarios.php?ok=1");
 }
