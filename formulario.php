@@ -2,47 +2,47 @@
 include_once "header.php";
 ?>
 
-<?php if (isset($_GET) && $_GET['ok'] == 1): ?>
+<?php if (isset($_GET) && isset($_GET['error'])): ?>
   <article>
     <?php
-    switch ($_GET) {
-        case '1':
-            echo"Todos los campos son requeridos";
-            break;
-        case '2':
-            echo"La edad debe ser numero y mayoe a 18";
-            break;
-        case '3':
-            echo"El correo debe ser valido";
-            break;
+    switch ($_GET['error']) {
+      case 1:
+        echo "❌ Todos los campos son requeridos";
+        break;
+      case 2:
+        echo "❌ La edad debe ser número y mayor 18";
+        break;
+      case 3:
+        echo "❌ El correo debe ser válido";
+        break;
     }
     ?>
   </article>
-  <?php endif; ?>
+<?php endif; ?>
 
-  <article>
-  <h2>Formulario de registro</h2>
+<article>
   <form action="procesa.php" method="post">
     <fieldset>
       <label for="nombre">Nombre</label>
-      <input type="text" name="nombre" id="nombre" />
+      <input type="text" id="nombre" name="nombre" required>
     </fieldset>
     <fieldset>
       <label for="edad">Edad</label>
-      <input type="number" name="edad" id="edad" min="0" max="120" />
+      <input type="number" id="edad" name="edad" min="1">
     </fieldset>
     <fieldset>
-      <label for="correo">Correo</label>
-      <input type="email" name="correo" id="correo" />
+      <label for="correo">Correo electrónico</label>
+      <input type="email" id="correo" name="correo" required>
     </fieldset>
     <fieldset>
-      <button type="submit">Guardar</button>
-      <a href="index.php" role="button" class="secondary">Regresar</a>
+      <button type="submit">
+        <i class="ph ph-paper-plane-right"></i>
+        Enviar
+      </button>
     </fieldset>
   </form>
 </article>
 
-
 <?php
-include_once "footer.php"
+include_once "footer.php";
 ?>
